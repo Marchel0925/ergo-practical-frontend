@@ -1,0 +1,154 @@
+<div>
+  <div class="d-flex justify-content-between">
+    <h3>Add person</h3>
+    <button class="btn btn-outline-danger my-auto" (click)="toggleForm()">X</button>
+  </div>
+  <form [formGroup]="personForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label class="form-label" for="firstName">First name</label>
+      <input 
+        id="firstName" 
+        formControlName="firstName" 
+        type="text" 
+        class="form-control" 
+        [ngClass]="{ 'is-invalid': submitted && controls.firstName.errors }"
+      >
+
+      <div *ngIf="submitted && controls.firstName.errors" class="invalid-feedback">
+        <div *ngIf="controls.firstName.errors.required">
+          First name is required.
+        </div>
+        <div *ngIf="controls.firstName.errors.maxLength">
+          First name can only be 50 chars long.
+        </div>
+        <div *ngIf="controls.firstName.errors.minLength">
+          First name has to be at least 1 char long.
+        </div>
+      </div>
+
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="lastName">Last name</label>
+      <input 
+        id="lastName" 
+        type="text"
+        formControlName="lastName" 
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && controls.lastName.errors }"
+      >
+
+      <div *ngIf="submitted && controls.lastName.errors" class="invalid-feedback">
+        <div *ngIf="controls.lastName.errors.required">
+         Last name is required.
+        </div>
+        <div *ngIf="controls.lastName.errors.maxLength">
+          Last name can only be 50 chars long.
+        </div>
+        <div *ngIf="controls.lastName.errors.minLength">
+          Last name has to be at least 1 char long.
+        </div>
+      </div>
+
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="gender">Gender</label>
+      <select 
+        class="form-select"
+        formControlName="gender"
+        id="gender"
+        [ngClass]="{ 'is-invalid': submitted && controls.lastName.errors }"
+      >
+        <option value="male" selected>Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+
+      <div *ngIf="submitted && controls.gender.errors" class="invalid-feedback">
+        <div *ngIf="controls.gender.errors.required">
+         Please specify your gender.
+        </div>
+      </div>
+
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="birthDay">Birth day</label>
+      <input 
+        id="birthDay"
+        type="datetime-local" 
+        formControlName="birthDay"
+        step=1
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && controls.birthDay.errors }"
+      >
+
+      <div *ngIf="submitted && controls.birthDay.errors" class="invalid-feedback">
+        <div *ngIf="controls.birthDay.errors.required">
+        Birth day is required.
+        </div>
+      </div>
+
+    </div>
+    <div class="d-flex justify-content-between">
+      <div class="form-group col-3">
+        <label class="form-label" for="code">Code</label>
+        <input
+          id="code"
+          type="number"
+          formControlName="code"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && controls.code.errors }"
+        >
+
+        <div *ngIf="submitted && controls.code.errors" class="invalid-feedback">
+          <div *ngIf="controls.code.errors.required">
+          Code is required.
+          </div>
+          <div *ngIf="controls.code.errors.max || controls.code.errors.min">
+            Code has to be at least 1 char long and no longer than 3 chars.
+          </div>
+        </div>
+
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="phoneNumber">Number</label>
+        <input
+          id="phoneNumber"
+          type="number"
+          formControlName="number"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && controls.number.errors }"
+        >
+
+        <div *ngIf="submitted && controls.number.errors" class="invalid-feedback">
+          <div *ngIf="controls.number.errors.required">
+            Number is required.
+          </div>
+          <div *ngIf="controls.number.errors.max || controls.number.errors.min">
+            Number has to be 8 chars long.
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && controls.email.errors }"
+      >
+
+      <div *ngIf="submitted && controls.email.errors" class="invalid-feedback">
+        <div *ngIf="controls.email.errors.required">
+          Email is required.
+        </div>
+      </div>
+
+    </div>
+    <div class="d-flex justify-content-center my-5">
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+  </form>
+</div>

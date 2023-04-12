@@ -1,0 +1,39 @@
+<div>
+  <div *ngIf="message && !alertHidden">
+    <div *ngIf="message.type == 'success'" class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>{{message.text}}</strong>
+      <button class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="hideAlert()"></button>
+    </div>
+    <div *ngIf="message.type == 'danger'" class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>{{message.text}}</strong>
+      <button class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="hideAlert()"></button>
+    </div>
+    <div *ngIf="message.type == 'info'" class="alert alert-info alert-dismissible fade show" role="alert">
+      <strong>{{message.text}}</strong>
+      <button class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="hideAlert()"></button>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <h1>People management system</h1>
+    <button *ngIf="!showForm" class="my-auto btn btn-primary" (click)="toggleForm()"><i class="bi bi-plus-circle-fill me-2"></i> Add</button>
+  </div>
+  <app-search
+    (searchEmitter)="searchPeopleHandler($event)"
+  ></app-search>
+  <div class="d-flex">
+    <app-people-table
+      [people]="people"
+      [showForm]="showForm"
+      (personEventEmitter)="tableActionHandler($event)"
+      class="w-100"
+    ></app-people-table>
+    <app-people-form
+      *ngIf="showForm"
+      (showFormEmitter)="updateShowForm($event)"
+      (personEmitter)="formActionHandler($event)"
+      [person]="personToEdit"
+      class="w-50"
+    ></app-people-form>
+  </div>
+</div>

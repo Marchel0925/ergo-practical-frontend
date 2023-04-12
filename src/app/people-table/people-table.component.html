@@ -1,0 +1,36 @@
+<div class="p-3 table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th> # </th>
+        <th> First name </th>
+        <th> Last name </th>
+        <th> Gender </th>
+        <th> Birth day </th>
+        <th> Phone number </th>
+        <th> Email </th>
+        <th> Actions </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="people.length == 0">
+        <td colspan="8" class="text-center">No people found</td>
+      </tr>
+      <tr *ngFor="let person of people">
+        <td>{{person.id}}</td>
+        <td>{{person.firstName}}</td>
+        <td>{{person.lastName}}</td>
+        <td>{{person.gender}}</td>
+        <td>{{person.birthDay | date:'medium'}}</td>
+        <td>{{person.phoneNumber}}</td>
+        <td>{{person.email}}</td>
+        <td>
+          <div class="h-100 d-flex">
+            <button class="btn btn-primary w-100 me-1" *ngIf="!showForm" (click)="emitPerson(person, true)">Edit</button>
+            <button class="btn btn-outline-danger w-100" (click)="emitPerson(person, false)">Delete</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
